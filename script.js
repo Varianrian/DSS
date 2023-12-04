@@ -230,7 +230,7 @@ function filter() {
   //   }
   // }
 
-  selectedKecamatan.push(3201, 3202, 3203, 3204);
+  selectedKecamatan.push(3201, 3202, 3203, 3204, 3205, 3206);
 
   return selectedKecamatan;
 }
@@ -255,7 +255,7 @@ async function dataset() {
 
 async function topsis() {
   const data = await dataset();
-  let bobot = [5, 4, 3, 4, 3];
+  let bobot = [4, 4, 3, 3];
 
   const pembagi = matrix_pembagi(data);
   // return pembagi;
@@ -278,4 +278,4 @@ async function topsis() {
   return ranking_x;
 }
 
-topsis().then((data) => console.log(data));
+get_umkm().then((data) => console.log(data));
