@@ -12,7 +12,7 @@ const url_daerah = "https://data.jabarprov.go.id/api-backend/bigdata/diskominfo/
 // DONE
 
 async function get_transportation(tahun = 2022) {
-  const response = await fetch(`${url_transportasi}?where={'tahun':${tahun}}`);
+  const response = await fetch(`${url_transportasi}?where={'tahun':'${tahun}'}`);
   const data = await response.json();
   const data_transportasi = data.data;
   return data_transportasi;
@@ -96,6 +96,54 @@ async function get_total_wisatawan() {
 
   return data_wisatawan;
 }
+
+async function get_total_umkm() {
+  const [umkm, daerah] = await Promise.all([get_umkm(), get_daerah()]);
+
+  let data_umkm = [];
+  for (let i = 0; i < daerah.length - 1; i++) {
+    let total = 0;
+    for (let j = 0; j < umkm.length; j++) {
+      if (umkm[j].kode_kabupaten_kota === daerah[i].bps_kota_kode) {
+        total += parseInt(umkm[j].proyeksi_jumlah_umkm);
+      }
+    }
+    data_umkm.push({
+      kota_kode: daerah[i].bps_kota_kode,
+      kota_nama: daerah[i].bps_kota_nama,
+
+      proyeksi_jumlah_umkm: total,
+    });
+  }
+
+  return data_umkm;
+}
+
+// get_total_umkm().then((data) => console.log(data));
+
+async function get_total_transportasi() {
+  const [transportasi, daerah] = await Promise.all([get_transportation(), get_daerah()]);
+
+  let data_transportasi = [];
+  for (let i = 0; i < daerah.length - 1; i++) {
+    let total = 0;
+    for (let j = 0; j < transportasi.length; j++) {
+      if (transportasi[j].kode_kabupaten === daerah[i].bps_kota_kode) {
+        total += parseInt(transportasi[j].jumlah_moda_tranportasi_akdp);
+      }
+    }
+    data_transportasi.push({
+      kota_kode: daerah[i].bps_kota_kode,
+      kota_nama: daerah[i].bps_kota_nama,
+
+      jumlah_moda_tranportasi_akdp: total,
+    });
+  }
+
+  return data_transportasi;
+}
+
+// get_total_transportasi().then((data) => console.log(data));
 
 const dummdata = [
   {
@@ -236,7 +284,7 @@ function filter() {
 }
 
 async function dataset() {
-  const [umkm, wisatawan, transportasi, penduduk, daerah] = await Promise.all([get_umkm(), get_total_wisatawan(), get_transportation(), get_total_penduduk(), get_daerah()]);
+  const [umkm, wisatawan, transportasi, penduduk, daerah] = await Promise.all([get_total_umkm(), get_total_wisatawan(), get_total_transportasi(), get_total_penduduk(), get_daerah()]);
 
   let data = [];
 
@@ -278,4 +326,4 @@ async function topsis() {
   return ranking_x;
 }
 
-get_umkm().then((data) => console.log(data));
+topsis().then((data) => console.log(data));
