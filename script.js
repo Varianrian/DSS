@@ -207,18 +207,26 @@ function matrix_bobot(normalisasi, bobot) {
   return matrix_bobot;
 }
 
-function ideal_positif(matrix_bobot) {
+function ideal_positif(matrix_bobot, status) {
   ideal_positif = [];
   for (let i = 0; i < matrix_bobot[0].length; i++) {
-    ideal_positif.push(Math.max(...matrix_bobot.map((item) => item[i])));
+    if (status[i] == "cost") {
+      ideal_positif.push(Math.min(...matrix_bobot.map((item) => item[i])));
+    } else {
+      ideal_positif.push(Math.max(...matrix_bobot.map((item) => item[i])));
+    }
   }
   return ideal_positif;
 }
 
-function ideal_negatif(matrix_bobot) {
+function ideal_negatif(matrix_bobot, status) {
   ideal_negatif = [];
   for (let i = 0; i < matrix_bobot[0].length; i++) {
-    ideal_negatif.push(Math.min(...matrix_bobot.map((item) => item[i])));
+    if (status[i] == "cost") {
+      ideal_negatif.push(Math.max(...matrix_bobot.map((item) => item[i])));
+    } else {
+      ideal_negatif.push(Math.min(...matrix_bobot.map((item) => item[i])));
+    }
   }
   return ideal_negatif;
 }
@@ -304,7 +312,8 @@ async function dataset() {
 
 async function topsis() {
   const data = await dataset();
-  let bobot = [4, 4, 3, 3];
+  let bobot = [4, 3, 3, 3];
+  let status = ["cost", "benefit", "benefit", "benefit"];
 
   const pembagi = matrix_pembagi(data);
   // return pembagi;
@@ -312,9 +321,9 @@ async function topsis() {
   // return normalisasi;
   const bobot_x = matrix_bobot(normalisasi, bobot);
   // return bobot_x;
-  const ideal_positif_x = ideal_positif(bobot_x);
+  const ideal_positif_x = ideal_positif(bobot_x, status);
   // return ideal_positif_x;
-  const ideal_negatif_x = ideal_negatif(bobot_x);
+  const ideal_negatif_x = ideal_negatif(bobot_x, status);
   // return ideal_negatif_x;
   const d_plus_x = d_plus(bobot_x, ideal_positif_x);
   // return d_plus_x;
