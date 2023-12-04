@@ -293,7 +293,8 @@ async function dataset() {
       data.push({
         kota_kode: daerah[i].bps_kota_kode,
         kota_nama: daerah[i].bps_kota_nama,
-        data: [wisatawan[i].jumlah_pengunjung, umkm[i].proyeksi_jumlah_umkm, transportasi[i].jumlah_moda_tranportasi_akdp, penduduk[i].jumlah_penduduk],
+        // data: [wisatawan[i].jumlah_pengunjung, umkm[i].proyeksi_jumlah_umkm, transportasi[i].jumlah_moda_tranportasi_akdp, penduduk[i].jumlah_penduduk],
+        data: [umkm[i].proyeksi_jumlah_umkm, transportasi[i].jumlah_moda_tranportasi_akdp, wisatawan[i].jumlah_pengunjung, penduduk[i].jumlah_penduduk],
       });
     }
   }
