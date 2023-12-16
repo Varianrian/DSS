@@ -197,84 +197,91 @@ function matrix_normalisasi(data, pembagi) {
 }
 
 function matrix_bobot(normalisasi, bobot) {
-  matrix_bobot = [];
+  let datas = [];
   for (let i = 0; i < normalisasi.length; i++) {
-    matrix_bobot.push([]);
+    let x = [];
     for (let j = 0; j < normalisasi[i].length; j++) {
-      matrix_bobot[i].push(normalisasi[i][j] * bobot[j]);
+      x.push(normalisasi[i][j] * bobot[j]);
     }
+    datas.push(x);
   }
-  return matrix_bobot;
+  return datas;
 }
 
 function ideal_positif(matrix_bobot, status) {
-  ideal_positif = [];
+  let datas = [];
   for (let i = 0; i < matrix_bobot[0].length; i++) {
     if (status[i] == "cost") {
-      ideal_positif.push(Math.min(...matrix_bobot.map((item) => item[i])));
+      datas.push(Math.min(...matrix_bobot.map((item) => item[i])));
     } else {
-      ideal_positif.push(Math.max(...matrix_bobot.map((item) => item[i])));
+      datas.push(Math.max(...matrix_bobot.map((item) => item[i])));
     }
   }
-  return ideal_positif;
+  return datas;
 }
 
 function ideal_negatif(matrix_bobot, status) {
-  ideal_negatif = [];
+  let datas = [];
   for (let i = 0; i < matrix_bobot[0].length; i++) {
     if (status[i] == "cost") {
-      ideal_negatif.push(Math.max(...matrix_bobot.map((item) => item[i])));
+      datas.push(Math.max(...matrix_bobot.map((item) => item[i])));
     } else {
-      ideal_negatif.push(Math.min(...matrix_bobot.map((item) => item[i])));
+      datas.push(Math.min(...matrix_bobot.map((item) => item[i])));
     }
   }
-  return ideal_negatif;
+  return datas;
 }
 
 function d_plus(matrix_bobot, ideal_positif) {
-  d_plus = [];
+  let datas = [];
   for (let i = 0; i < matrix_bobot.length; i++) {
     nominal = 0;
     for (let j = 0; j < matrix_bobot[i].length; j++) {
       nominal += Math.pow(matrix_bobot[i][j] - ideal_positif[j], 2);
     }
-    d_plus.push(Math.sqrt(nominal));
+    datas.push(Math.sqrt(nominal));
   }
-  return d_plus;
+  return datas;
 }
 
 function d_min(matrix_bobot, ideal_negatif) {
-  d_min = [];
+  let datas = [];
   for (let i = 0; i < matrix_bobot.length; i++) {
     nominal = 0;
     for (let j = 0; j < matrix_bobot[i].length; j++) {
       nominal += Math.pow(matrix_bobot[i][j] - ideal_negatif[j], 2);
     }
-    d_min.push(Math.sqrt(nominal));
+    datas.push(Math.sqrt(nominal));
   }
-  return d_min;
+  return datas;
 }
 
 function preferensi(d_plus, d_min) {
-  preferensi = [];
+  let datas = [];
   for (let i = 0; i < d_plus.length; i++) {
-    preferensi.push(d_min[i] / (d_min[i] + d_plus[i]));
+    datas.push(d_min[i] / (d_min[i] + d_plus[i]));
   }
-  return preferensi;
+  return datas;
 }
 
-function ranking(preferensi) {
-  ranking = [];
-  for (let i = 0; i < preferensi.length; i++) {
-    ranking.push([preferensi[i]]);
+function ranking(preferensi, data) {
+  let before = [];
+  for (let i = 0; i < data.length; i++) {
+    before.push({
+      kota_kode: data[i].kota_kode,
+      kota_nama: data[i].kota_nama,
+      prefrensi: preferensi[i],
+    });
   }
-  ranking.sort();
-  ranking.reverse();
 
-  for (let i = 0; i < ranking.length; i++) {
-    ranking[i].push(i + 1);
+  before.sort((a, b) => b.prefrensi - a.prefrensi);
+  // datas.reverse();
+
+  for (let i = 0; i < before.length; i++) {
+    before[i].rank = (i + 1);
   }
-  return ranking;
+
+  return before;
 }
 
 function filter() {
@@ -331,7 +338,7 @@ async function topsis() {
   // return d_min_x;
   const preferensi_x = preferensi(d_plus_x, d_min_x);
   // return preferensi_x;
-  const ranking_x = ranking(preferensi_x);
+  const ranking_x = ranking(preferensi_x, data);
 
   return ranking_x;
 }
