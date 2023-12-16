@@ -350,5 +350,3 @@ async function topsis() {
 
   return ranking_x;
 }
-
-topsis().then((data) => console.log(data));
