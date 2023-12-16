@@ -285,15 +285,14 @@ function ranking(preferensi, data) {
 }
 
 function filter() {
-  // let inputKecamatan = document.querySelector('input[name="kecamatan"]');
+  let inputKecamatan = document.querySelectorAll('input[name="kota"]');
   let selectedKecamatan = [];
-  // for (let i = 0; i < inputKecamatan.length; i++) {
-  //   if (inputKecamatan[i].checked) {
-  //     selectedKecamatan.push(inputKecamatan[i].value);
-  //   }
-  // }
-
-  selectedKecamatan.push(3201, 3202, 3203, 3204, 3205, 3206);
+  for (let i = 0; i < inputKecamatan.length; i++) {
+    if (inputKecamatan[i].checked) {
+      let value = parseInt(inputKecamatan[i].value);
+      selectedKecamatan.push(value);
+    }
+  }
 
   return selectedKecamatan;
 }
@@ -317,9 +316,18 @@ async function dataset() {
   return data;
 }
 
+function getBobot() {
+  const umkm = document.getElementById('umkm').value;
+  const transportasi = document.getElementById('transportasi').value;
+  const wisatawan = document.getElementById('wisatawan').value;
+  const penduduk = document.getElementById('penduduk').value;
+
+  return [parseInt(umkm), parseInt(transportasi), parseInt(wisatawan), parseInt(penduduk)];
+}
+
 async function topsis() {
   const data = await dataset();
-  let bobot = [4, 3, 3, 3];
+  let bobot = getBobot();
   let status = ["cost", "benefit", "benefit", "benefit"];
 
   const pembagi = matrix_pembagi(data);

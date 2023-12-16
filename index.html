@@ -9,11 +9,10 @@
   <title>Document</title>
 </head>
 
-<body class="bg-gradient-to-br from-indigo-400 to-cyan-400">
+<body class="bg-gradient-to-br from-indigo-400 to-cyan-400 min-h-screen">
   <div class="bg-slate-800 text-black w-fit mx-auto text-slate-200 rounded-xl shadow-xl">
     <h1 class="text-2xl text-center font-bold max-w-xl mx-auto mt-4 p-4">Sistem Penunjang Keputusan Untuk Menentukan
-      Lokasi
-      Usaha Fashion di Kabupaten Sumedang</h1>
+      Lokasi Usaha Fashion di Provinsi Jawa Barat</h1>
   </div>
   <div class="bg-slate-800 text-black w-fit mx-auto text-slate-200 rounded-xl shadow-xl mt-5 p-4">
     <table class="table-auto mx-auto border-collapse border border-slate-500">
@@ -25,283 +24,40 @@
       </thead>
       <tbody>
         <tr>
-          <td class="border border-slate-500 py-1 px-3">Jumlah Penduduk</td>
-          <td class="border border-slate-500 py-1 px-3"><input type="number" name="penduduk" id="penduduk" value="3"
-              min="1" max="5" class="w-20 text-center text-black rounded-md" required></td>
+          <td class="border border-slate-500 py-1 px-3">Jumlah UMKM Fashion</td>
+          <td class="border border-slate-500 py-1 px-3"><input type="number" name="umkm" id="umkm" value="1" min="1"
+              max="5" class="w-20 text-center text-black rounded-md" required></td>
+        </tr>
+        <tr>
+          <td class="border border-slate-500 py-1 px-3">Jumlah Moda Transportasi</td>
+          <td class="border border-slate-500 py-1 px-3"><input type="number" name="transportasi" id="transportasi"
+              value="1" min="1" max="5" class="w-20 text-center text-black rounded-md" required></td>
         </tr>
         <tr>
           <td class="border border-slate-500 py-1 px-3">Jumlah Wisatawan</td>
-          <td class="border border-slate-500 py-1 px-3"><input type="number" name="wisatawan" id="wisatawan" value="3"
+          <td class="border border-slate-500 py-1 px-3"><input type="number" name="wisatawan" id="wisatawan" value="1"
               min="1" max="5" class="w-20 text-center text-black rounded-md" required></td>
         </tr>
-        <tr>
-          <td class="border border-slate-500 py-1 px-3">Jumlah Usaha Fashion</td>
-          <td class="border border-slate-500 py-1 px-3"><input type="number" name="usaha" id="usaha" value="3" min="1"
-              max="5" class="w-20 text-center text-black rounded-md" required></td>
-        </tr>
-        <tr>
+        <!-- <tr>
           <td class="border border-slate-500 py-1 px-3">Jumlah Tindak Kejahatan</td>
-          <td class="border border-slate-500 py-1 px-3"><input type="number" name="kejahatan" id="kejahatan" value="3"
+          <td class="border border-slate-500 py-1 px-3"><input type="number" name="kejahatan" id="kejahatan" value="1"
               min="1" max="5" class="w-20 text-center text-black rounded-md" required></td>
-        </tr>
+        </tr> -->
         <tr>
-          <td class="border border-slate-500 py-1 px-3">Jumlah Izin Bangunan</td>
-          <td class="border border-slate-500 py-1 px-3"><input type="number" \ name="izin" id="izin" value="3" min="1"
-              max="5" class="w-20 text-center text-black rounded-md" required></td>
+          <td class="border border-slate-500 py-1 px-3">Jumlah Penduduk</td>
+          <td class="border border-slate-500 py-1 px-3"><input type="number" name="penduduk" id="penduduk" value="1"
+              min="1" max="5" class="w-20 text-center text-black rounded-md" required></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="bg-slate-800 text-black w-fit mx-auto text-slate-200 rounded-xl shadow-xl mt-5 p-2">
+  <div class="bg-slate-800 text-black w-fit mx-auto text-slate-200 rounded-xl shadow-xl mt-5 p-4">
 
     <h2 class="text-xl font-bold text-center m-2">Alternatif Kriteria</h2>
+    <p class="text-center" id="loading">Loading data...</p>
     <form action="" class="flex w-full">
-      <table class="table mx-auto">
-        <tbody>
-          <tr>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="jatinangor" id="jatinangor"
-                  name="kecamatan">
-                <label class="form-check-label" for="jatinangor">
-                  Jatinangor
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="cimanggung" id="cimanggung"
-                  name="kecamatan">
-                <label class="form-check-label" for="cimanggung">
-                  Cimanggung
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="tanjungsari" id="tanjungsari"
-                  name="kecamatan">
-                <label class="form-check-label" for="tanjungsari">
-                  Tanjungsari
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="sukasari" id="sukasari"
-                  name="kecamatan">
-                <label class="form-check-label" for="sukasari">
-                  Sukasari
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="pamulihan" id="pamulihan"
-                  name="kecamatan">
-                <label class="form-check-label" for="pamulihan">
-                  Pamulihan
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="rancakalong" id="rancakalong"
-                  name="kecamatan">
-                <label class="form-check-label" for="rancakalong">
-                  Rancakalong
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="sumedang selatan"
-                  id="sumedang-selatan" name="kecamatan">
-                <label class="form-check-label" for="sumedang-selatan">
-                  Sumedang Selatan
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="sumedang utara"
-                  id="sumedang-utara" name="kecamatan">
-                <label class="form-check-label" for="sumedang-utara">
-                  Sumedang Utara
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="ganeas" id="ganeas"
-                  name="kecamatan">
-                <label class="form-check-label" for="ganeas">
-                  Ganeas
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="situraja" id="situraja"
-                  name="kecamatan">
-                <label class="form-check-label" for="situraja">
-                  Situraja
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="cisitu" id="cisitu"
-                  name="kecamatan">
-                <label class="form-check-label" for="cisitu">
-                  Cisitu
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="darmaraja" id="darmaraja"
-                  name="kecamatan">
-                <label class="form-check-label" for="darmaraja">
-                  Darmaraja
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="cibugel" id="cibugel"
-                  name="kecamatan">
-                <label class="form-check-label" for="cibugel">
-                  Cibugel
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="wado" id="wado" name="kecamatan">
-                <label class="form-check-label" for="wado">
-                  Wado
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="jatinunggal" id="jatinunggal"
-                  name="kecamatan">
-                <label class="form-check-label" for="jatinunggal">
-                  Jatinunggal
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="jatigede" id="jatigede"
-                  name="kecamatan">
-                <label class="form-check-label" for="jatigede">
-                  Jatigede
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="tomo" id="tomo" name="kecamatan">
-                <label class="form-check-label" for="tomo">
-                  Tomo
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="ujungjaya" id="ujungjaya"
-                  name="kecamatan">
-                <label class="form-check-label" for="ujungjaya">
-                  Ujungjaya
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="conggeang" id="conggeang"
-                  name="kecamatan">
-                <label class="form-check-label" for="conggeang">
-                  Conggeang
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="paseh" id="paseh"
-                  name="kecamatan">
-                <label class="form-check-label" for="paseh">
-                  Paseh
-                </label>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="cimalaka" id="cimalaka"
-                  name="kecamatan">
-                <label class="form-check-label" for="cimalaka">
-                  Cimalaka
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="cisarua" id="cisarua"
-                  name="kecamatan">
-                <label class="form-check-label" for="cisarua">
-                  Cisarua
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="tanjungkerta" id="tanjungkerta"
-                  name="kecamatan">
-                <label class="form-check-label" for="tanjungkerta">
-                  Tanjungkerta
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="tanjungmedar" id="tanjungmedar"
-                  name="kecamatan">
-                <label class="form-check-label" for="tanjungmedar">
-                  Tanjungmedar
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="buahdua" id="buahdua"
-                  name="kecamatan">
-                <label class="form-check-label" for="buahdua">
-                  Buahdua
-                </label>
-              </div>
-            </td>
-          <tr>
-            <td>
-              <div class="form-check form-check-inline p-1">
-                <input class="form-check-input  accent-sky-400" type="checkbox" value="surian" id="surian"
-                  name="kecamatan">
-                <label class="form-check-label" for="surian">
-                  Surian
-                </label>
-              </div>
-            </td>
-          </tr>
-          </tr>
+      <table class="table mx-auto" id="table-alternatif">
+        <tbody id="table-alternatif-body">
         </tbody>
       </table>
     </form>
@@ -314,6 +70,7 @@
   <div class="bg-slate-800 text-black w-fit mx-auto text-slate-200 rounded-xl shadow-xl mt-5 p-4 hidden"
     id="hasil-container">
     <h2 class="text-xl font-bold text-center m-2">Hasil</h2>
+    <p class="text-center" id="loading-hasil">Loading data...</p>
     <table class="table-auto mx-auto border-collapse border border-slate-500">
       <thead>
         <tr>
@@ -333,51 +90,81 @@
 </body>
 
 <script>
+  const tableAlternatif = document.getElementById('table-alternatif');
+  const tableAlternatifBody = document.getElementById('table-alternatif-body');
+
+  async function get_daerah() {
+    const response = await fetch(`${url_daerah}`);
+    const data = await response.json();
+    const data_daerah = data.data;
+    return data_daerah;
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const data_daerah = await get_daerah();
+    const loading = document.getElementById('loading');
+    loading.classList.add('hidden');
+    let currentRow;
+
+    for (let i = 0; i < data_daerah.length; i++) {
+      // Check if it's the first checkbox in a new row
+      if (i % 5 === 0) {
+        currentRow = document.createElement('tr');
+        tableAlternatifBody.appendChild(currentRow);
+      }
+      if (data_daerah[i].bps_kota_kode === 0) continue;
+
+      const td = document.createElement('td');
+      const div = document.createElement('div');
+      div.classList.add('form-check', 'form-check-inline', 'p-1');
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.classList.add('form-check-input', 'accent-sky-400');
+      input.value = data_daerah[i].bps_kota_kode;
+      input.id = data_daerah[i].bps_kota_kode;
+      input.name = 'kota';
+      const label = document.createElement('label');
+      label.classList.add('form-check-label');
+      label.setAttribute('for', data_daerah[i].bps_kota_kode);
+      let kotaName = data_daerah[i].bps_kota_nama;
+      label.innerHTML = data_daerah[i].bps_kota_nama;
+
+      currentRow.appendChild(td);
+      td.appendChild(div);
+      div.appendChild(input);
+      div.appendChild(label);
+    }
+  });
+
   const hasil = document.getElementById('hasil');
   const hasilContainer = document.getElementById('hasil-container');
 
-  function hitung() {
-    hasil.innerHTML = ''
-    const penduduk = document.getElementById('penduduk').value;
-    const wisatawan = document.getElementById('wisatawan').value;
-    const usaha = document.getElementById('usaha').value;
-    const kejahatan = document.getElementById('kejahatan').value;
-    const izin = document.getElementById('izin').value;
-    const kecamatan = document.getElementsByName('kecamatan');
-    const kecamatanChecked = [];
-    for (let i = 0; i < kecamatan.length; i++) {
-      if (kecamatan[i].checked) {
-        kecamatanChecked.push(kecamatan[i].value);
-      }
-    }
-    const data = {
-      penduduk,
-      wisatawan,
-      usaha,
-      kejahatan,
-      izin,
-      kecamatanChecked
-    }
-    console.log(data);
+  async function hitung() {
+    hasil.innerHTML = '';
 
     hasilContainer.classList.remove('hidden');
     //scroll to hasil
     window.scrollTo(hasilContainer.offsetTop, hasilContainer.offsetLeft)
 
     // show kecamatan checked
-    for (let i = 0; i < kecamatanChecked.length; i++) {
+    const topsisData = await topsis(); // Assuming topsis returns an array of data
+    const loading = document.getElementById('loading-hasil');
+    loading.classList.add('hidden');
+
+    // Display the data in the table
+    for (let i = 0; i < topsisData.length; i++) {
       const tr = document.createElement('tr');
       const tdNo = document.createElement('td');
-      const tdKecamatan = document.createElement('td');
+      const tdKota = document.createElement('td');
       const tdNilai = document.createElement('td');
       tdNo.classList.add('border', 'border-slate-500', 'py-1', 'px-3');
-      tdKecamatan.classList.add('border', 'border-slate-500', 'py-1', 'px-3');
+      tdKota.classList.add('border', 'border-slate-500', 'py-1', 'px-3');
       tdNilai.classList.add('border', 'border-slate-500', 'py-1', 'px-3');
       tdNo.innerHTML = i + 1;
-      tdKecamatan.innerHTML = kecamatanChecked[i];
-      tdNilai.innerHTML = 0.5;
+      tdKota.innerHTML = topsisData[i].kota_nama;
+      tdNilai.innerHTML = topsisData[i].prefrensi;
       tr.appendChild(tdNo);
-      tr.appendChild(tdKecamatan);
+      tr.appendChild(tdKota);
       tr.appendChild(tdNilai);
       hasil.appendChild(tr);
     }
