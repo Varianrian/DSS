@@ -1,16 +1,17 @@
+// url api data umkm
 const url_umkm = "https://data.jabarprov.go.id/api-backend/bigdata/diskuk/od_17371_proyeksi_jml_ush_mikro_kecil_menengah_umkm__kabupatenk";
-// DONE
+// url api data transportasi
 const url_transportasi = "https://data.jabarprov.go.id/api-backend/bigdata/dishub/od_19871_jml_moda_transportasi_angkutan_kota_dalam_prov__kabupa";
-// DONE
+// url api data wisatawan
 const url_wisatawan = "https://data.jabarprov.go.id/api-backend/bigdata/disparbud/od_15367_jml_pengunjung_ke_objek_wisata__jenis_wisatawan_kabupa";
-// DONE
+// url api data kriminalitas
 // const url_kriminal = "https://data.jabarprov.go.id/api-backend/bigdata/dpmdes/idm_dftr_sts_partisipasi_warga_dalam_sistem_aman_lingkungan__de";
-// NOT YET
+// url api data penduduk
 const url_penduduk = "https://data.jabarprov.go.id/api-backend/bigdata/disdukcapil-2/od_15921_jml_penduduk__jk_desakelurahan";
-// DONE
+// url api data daerah
 const url_daerah = "https://data.jabarprov.go.id/api-backend/bigdata/diskominfo/od_kode_wilayah_dan_nama_wilayah_kota_kabupaten";
-// DONE
 
+// mengambil data transportasi dari api
 async function get_transportation(tahun = 2022) {
   const response = await fetch(`${url_transportasi}?where={'tahun':'${tahun}'}`);
   const data = await response.json();
@@ -18,6 +19,7 @@ async function get_transportation(tahun = 2022) {
   return data_transportasi;
 }
 
+// mengambil data umkm dari api
 async function get_umkm(tahun = 2021, kategori = "FASHION") {
   const response = await fetch(`${url_umkm}?where={'tahun': '${tahun}', 'kategori_usaha': '${kategori}'}`);
   const data = await response.json();
@@ -25,6 +27,7 @@ async function get_umkm(tahun = 2021, kategori = "FASHION") {
   return data_umkm;
 }
 
+// mengambil data wisatawan dari api
 async function get_wisatawan(tahun = 2022) {
   const response = await fetch(`${url_wisatawan}?where={'tahun':'${tahun}'}`);
   const data = await response.json();
@@ -32,6 +35,7 @@ async function get_wisatawan(tahun = 2022) {
   return data_wisatawan;
 }
 
+// mengambil data kriminalitas dari api
 // async function get_kriminal() {
 //   const response = await fetch(`${url_kriminal}?where={'tahun':'2021'}&limit=100`);
 //   const data = await response.json();
@@ -39,6 +43,7 @@ async function get_wisatawan(tahun = 2022) {
 //   return data_kriminal;
 // }
 
+// mengambil data penduduk dari api
 async function get_penduduk(tahun = 2020) {
   const response = await fetch(`${url_penduduk}?where={'tahun':${tahun}}&limit=25000`);
   const data = await response.json();
@@ -46,6 +51,7 @@ async function get_penduduk(tahun = 2020) {
   return data_penduduk;
 }
 
+// mengambil data daerah dari api
 async function get_daerah() {
   const response = await fetch(`${url_daerah}`);
   const data = await response.json();
@@ -53,6 +59,7 @@ async function get_daerah() {
   return data_daerah;
 }
 
+// mengambil data daerah dari api berdasarkan daerah
 async function get_total_penduduk() {
   const [penduduk, daerah] = await Promise.all([get_penduduk(), get_daerah()]);
 
@@ -75,6 +82,7 @@ async function get_total_penduduk() {
   return data_penduduk;
 }
 
+// mengambil total wisatawan dari api berdasarkan daerah
 async function get_total_wisatawan() {
   const [wisatawan, daerah] = await Promise.all([get_wisatawan(), get_daerah()]);
 
@@ -97,6 +105,7 @@ async function get_total_wisatawan() {
   return data_wisatawan;
 }
 
+// mengambil total umkm dari api berdasarkan daerah
 async function get_total_umkm() {
   const [umkm, daerah] = await Promise.all([get_umkm(), get_daerah()]);
 
@@ -119,8 +128,7 @@ async function get_total_umkm() {
   return data_umkm;
 }
 
-// get_total_umkm().then((data) => console.log(data));
-
+// mengambil total transportasi dari api berdasarkan daerah
 async function get_total_transportasi() {
   const [transportasi, daerah] = await Promise.all([get_transportation(), get_daerah()]);
 
@@ -143,35 +151,7 @@ async function get_total_transportasi() {
   return data_transportasi;
 }
 
-// get_total_transportasi().then((data) => console.log(data));
-
-const dummdata = [
-  {
-    kandidate: "A1",
-    kriteria: [4, 4, 5, 4, 4],
-  },
-  {
-    kandidate: "A2",
-    kriteria: [5, 4, 4, 4, 4],
-  },
-  {
-    kandidate: "A3",
-    kriteria: [2, 2, 3, 3, 3],
-  },
-  {
-    kandidate: "A4",
-    kriteria: [2, 3, 2, 2, 2],
-  },
-  {
-    kandidate: "A5",
-    kriteria: [2, 2, 2, 1, 1],
-  },
-  {
-    kandidate: "A6",
-    kriteria: [1, 4, 4, 3, 3],
-  },
-];
-
+// mencari matrix pembagi
 function matrix_pembagi(data) {
   pembagi = [];
   for (let i = 0; i < data[0].data.length; i++) {
@@ -185,6 +165,7 @@ function matrix_pembagi(data) {
   return pembagi;
 }
 
+// menormalisasikan matrix
 function matrix_normalisasi(data, pembagi) {
   normalisasi = [];
   for (let i = 0; i < data.length; i++) {
@@ -196,6 +177,7 @@ function matrix_normalisasi(data, pembagi) {
   return normalisasi;
 }
 
+// mencari matrix bobot
 function matrix_bobot(normalisasi, bobot) {
   let datas = [];
   for (let i = 0; i < normalisasi.length; i++) {
@@ -208,6 +190,7 @@ function matrix_bobot(normalisasi, bobot) {
   return datas;
 }
 
+// mencari ideal positif
 function ideal_positif(matrix_bobot, status) {
   let datas = [];
   for (let i = 0; i < matrix_bobot[0].length; i++) {
@@ -220,6 +203,7 @@ function ideal_positif(matrix_bobot, status) {
   return datas;
 }
 
+// mencari ideal negatif
 function ideal_negatif(matrix_bobot, status) {
   let datas = [];
   for (let i = 0; i < matrix_bobot[0].length; i++) {
@@ -232,6 +216,7 @@ function ideal_negatif(matrix_bobot, status) {
   return datas;
 }
 
+// mencari d+
 function d_plus(matrix_bobot, ideal_positif) {
   let datas = [];
   for (let i = 0; i < matrix_bobot.length; i++) {
@@ -244,6 +229,7 @@ function d_plus(matrix_bobot, ideal_positif) {
   return datas;
 }
 
+// mencari d-
 function d_min(matrix_bobot, ideal_negatif) {
   let datas = [];
   for (let i = 0; i < matrix_bobot.length; i++) {
@@ -256,6 +242,7 @@ function d_min(matrix_bobot, ideal_negatif) {
   return datas;
 }
 
+// mencari preferensi
 function preferensi(d_plus, d_min) {
   let datas = [];
   for (let i = 0; i < d_plus.length; i++) {
@@ -264,6 +251,7 @@ function preferensi(d_plus, d_min) {
   return datas;
 }
 
+// mencari ranking
 function ranking(preferensi, data) {
   let before = [];
   for (let i = 0; i < data.length; i++) {
@@ -271,6 +259,7 @@ function ranking(preferensi, data) {
       kota_kode: data[i].kota_kode,
       kota_nama: data[i].kota_nama,
       prefrensi: preferensi[i],
+      data: data[i].data,
     });
   }
 
@@ -278,25 +267,27 @@ function ranking(preferensi, data) {
   // datas.reverse();
 
   for (let i = 0; i < before.length; i++) {
-    before[i].rank = (i + 1);
+    before[i].rank = i + 1;
   }
 
   return before;
 }
 
+// filtering data berdasarkan kota yang dipilih
 function filter() {
-  let inputKecamatan = document.querySelectorAll('input[name="kota"]');
-  let selectedKecamatan = [];
-  for (let i = 0; i < inputKecamatan.length; i++) {
-    if (inputKecamatan[i].checked) {
-      let value = parseInt(inputKecamatan[i].value);
-      selectedKecamatan.push(value);
+  let inputKota = document.querySelectorAll('input[name="kota"]');
+  let selectedKota = [];
+  for (let i = 0; i < inputKota.length; i++) {
+    if (inputKota[i].checked) {
+      let value = parseInt(inputKota[i].value);
+      selectedKota.push(value);
     }
   }
 
-  return selectedKecamatan;
+  return selectedKota;
 }
 
+// mengambil nilai dataset dari data data yang sudah di filter
 async function dataset() {
   const [umkm, wisatawan, transportasi, penduduk, daerah] = await Promise.all([get_total_umkm(), get_total_wisatawan(), get_total_transportasi(), get_total_penduduk(), get_daerah()]);
 
@@ -316,15 +307,17 @@ async function dataset() {
   return data;
 }
 
+// mengambil nilai bobot dari inputan
 function getBobot() {
-  const umkm = document.getElementById('umkm').value;
-  const transportasi = document.getElementById('transportasi').value;
-  const wisatawan = document.getElementById('wisatawan').value;
-  const penduduk = document.getElementById('penduduk').value;
+  const umkm = document.getElementById("umkm").value;
+  const transportasi = document.getElementById("transportasi").value;
+  const wisatawan = document.getElementById("wisatawan").value;
+  const penduduk = document.getElementById("penduduk").value;
 
   return [parseInt(umkm), parseInt(transportasi), parseInt(wisatawan), parseInt(penduduk)];
 }
 
+// menghitung menggunakan metode topsis
 async function topsis() {
   const data = await dataset();
   let bobot = getBobot();
