@@ -88,6 +88,7 @@
   const tableAlternatif = document.getElementById('table-alternatif');
   const tableAlternatifBody = document.getElementById('table-alternatif-body');
 
+  //fungsi untuk fetching data daerah
   async function get_daerah() {
     const response = await fetch(`${url_daerah}`);
     const data = await response.json();
@@ -95,6 +96,7 @@
     return data_daerah;
   }
 
+  //Menampilkan data daerah yang difetch
   document.addEventListener('DOMContentLoaded', async () => {
     const data_daerah = await get_daerah();
     const loading = document.getElementById('loading');
@@ -134,6 +136,7 @@
   const hasil = document.getElementById('hasil');
   const hasilContainer = document.getElementById('hasil-container');
 
+  //fungsi untuk menjalankan perhitungan dan menampilkan hasil
   async function hitung() {
     hasil.innerHTML = '';
 
